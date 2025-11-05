@@ -1,0 +1,1 @@
+export const  api = "https://pluga.co/ferramentas_search.json";
