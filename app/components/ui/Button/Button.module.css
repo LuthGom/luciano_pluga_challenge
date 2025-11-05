@@ -1,0 +1,22 @@
+.button {
+  color: #ffffff;
+  background-color: #10E454; /* green-ish to match previous */
+  border: 2px solid transparent;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.15s ease, background-color 0.15s ease, transform 0.05s ease;
+  font-weight: 600;
+}
+
+.button:hover {
+  color: #1a365d; /* darker text on hover */
+  text-decoration: underline;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
