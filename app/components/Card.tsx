@@ -13,7 +13,7 @@ export default function Card({ name, icon, color, onClick }: CardProps) {
 
 
     return (
-        <div className="w-40 h-40 p-4 border-2 border-solid border-black-500 flex flex-col justify-center items-center gap-4 cursor-pointer" onClick={onClick}>
+        <div className="w-40 h-40 p-4 border-2 border-solid border-gray-400 rounded-sm flex flex-col justify-center items-center cursor-pointer hover:border-blue-500" onClick={onClick}>
             <div >
                 <ReactSVG src={icon}
                     beforeInjection={(svg) => {
