@@ -4,13 +4,8 @@ import { ReactSVG } from "react-svg";
 import Card from "./Card";
 import Modal from "./Modal";
 import { useState } from "react";
+import Tool from "./Tool";
 
-interface Tool {
-    name: string;
-    icon: string;
-    color: string;
-    link: string;
-}
 
 interface ToolModalProps {
     isOpen: boolean;
@@ -58,15 +53,14 @@ export default function ToolModal({ isOpen, onClose, tool, onToolClick, lastedTo
                     <h2 className="text-lg font-bold mb-4 text-center">ÚLTIMAS FERRAMENTAS VISUALIZADAS</h2>
                     <div className="flex justify-between">
 
-                        {lastedTools.map((tool, index) =>
+                        {lastedTools.map((tool) =>
                         (
                             <Card
-                                key={index}
+                                key={tool.app_id}
                                 name={tool.name}
                                 icon={tool.icon}
                                 color={tool.color}
-                                onClick={() => onToolClick(tool)}
-                            />))}
+                                onClick={() => onToolClick(tool)}                             />))}
                     </div>
                 </div>
             </div>
