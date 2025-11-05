@@ -1,4 +1,4 @@
-import CardsList from "./components/lists/CardsList";
+import CardsList from './components/lists/CardsList/CardsList';
 import { api } from './services/api';
 
 export default async function Home({ searchParams }: { searchParams?: { page?: string } }) {
