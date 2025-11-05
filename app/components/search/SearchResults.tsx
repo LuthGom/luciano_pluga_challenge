@@ -3,7 +3,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import Card from '../ui/Card';
 import Button from '../ui/Button';
-import paginate from '../../utils/paginate';
 import { SearchResultsProps } from '../../types';
 
 
