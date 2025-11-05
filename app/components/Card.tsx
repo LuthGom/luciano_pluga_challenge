@@ -5,8 +5,8 @@ import { ReactSVG } from "react-svg";
 
 interface CardProps {
     name: string;
-    icon: string;  // URL do SVG
-    color: string; // cor que vem da API
+    icon: string;  
+    color: string; 
     onClick?: () => void;
 }
 export default function Card({ name, icon, color, onClick }: CardProps) {
