@@ -3,6 +3,7 @@
 import { ReactSVG } from "react-svg";
 import Card from "./Card";
 import Modal from "./Modal";
+import { useState } from "react";
 
 interface Tool {
     name: string;
@@ -16,48 +17,57 @@ interface ToolModalProps {
     onClose: () => void;
     tool: Tool | null;
     onToolClick: (tool: Tool) => void;
+    lastedTools: Tool[];
 }
 
-export default function ToolModal({ isOpen, onClose, tool, onToolClick }: ToolModalProps) {
+export default function ToolModal({ isOpen, onClose, tool, onToolClick, lastedTools }: ToolModalProps) {
     if (!tool) return null;
+
+    const [selectedTool, setSelectedTool] = useState<Tool | null>(null);
+    const [lastClickedTools, setLastClickedTools] = useState<Tool[]>([]);
 
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
-            <div className="space-y-6">
-                <div className="flex items-center space-x-4">
-                    <div className="flex-shrink-0">
-                        <ReactSVG 
+            <div className="space-y-6 flex flex-col  items-center">
+                <div className="w-full flex items-center justify-around">
+                    <div className="">
+                        <ReactSVG
                             src={tool.icon}
                             beforeInjection={(svg) => {
                                 svg.setAttribute('fill', tool.color);
-                                svg.setAttribute('color', tool.color);
                                 svg.setAttribute('width', '64px');
                                 svg.setAttribute('height', '64px');
-                            }} 
+                            }}
                         />
                     </div>
-                    <div className="flex-1">
+                    <div className="flex flex-col">
                         <h3 className="text-xl font-bold mb-2">{tool.name}</h3>
-                        <a 
-                            href={tool.link} 
-                            target="_blank" 
+                        
+                        <a
+                            href={tool.link}
+                            target="_blank"
                             rel="noopener noreferrer"
-                            className="text-blue-600 hover:text-blue-800 underline"
+                            className="text-white  underline border-2 rounded-lg bg-[#10E454] py-2 px-4 hover:text-blue-800"
                         >
-                            Acessar {tool.name}
+                            Acessar
                         </a>
                     </div>
                 </div>
 
-                <div className="mt-8">
-                    <h2 className="text-lg font-bold mb-4">ÚLTIMAS FERRAMENTAS VISUALIZADAS</h2>
-                    <Card 
-                        key={0}
-                        name={tool.name}
-                        icon={tool.icon}
-                        color={tool.color}
-                        onClick={() => onToolClick(tool)}
-                    />
+                <div className="w-full">
+                    <h2 className="text-lg font-bold mb-4 text-center">ÚLTIMAS FERRAMENTAS VISUALIZADAS</h2>
+                    <div className="flex justify-between">
+
+                        {lastedTools.map((tool, index) =>
+                        (
+                            <Card
+                                key={index}
+                                name={tool.name}
+                                icon={tool.icon}
+                                color={tool.color}
+                                onClick={() => onToolClick(tool)}
+                            />))}
+                    </div>
                 </div>
             </div>
         </Modal>
