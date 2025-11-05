@@ -1,5 +1,5 @@
 'use client';
-
+import styles from './Button.module.css';
 interface ButtonProps {
     onClick: () => void;
     disabled?: boolean;
@@ -8,11 +8,12 @@ interface ButtonProps {
 }
 export default function Button({ onClick, disabled, name, className }: ButtonProps) {
 
+    const classNames = `${styles.button} ${className}`.trim();
     return (
         <button
             onClick={onClick}
             disabled={disabled}
-            className={`text-white  underline border-2 rounded-lg  py-2 px-4 hover:text-blue-800 cursor-pointer ${className}`}
+            className={classNames}
         >
             {name}
         </button>)

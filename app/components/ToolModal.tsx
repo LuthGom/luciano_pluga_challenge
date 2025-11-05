@@ -1,9 +1,10 @@
 'use client';
 
 import { ReactSVG } from "react-svg";
-import Card from "../ui/Card";
-import Modal from "./Modal";
-import Tool from "@/app/types";
+import Card from "./ui/Card/Card";
+import Modal from "./modals/Modal/Modal";
+import { useState } from "react";
+import Tool from "../types";
 
 
 interface ToolModalProps {
@@ -17,6 +18,8 @@ interface ToolModalProps {
 export default function ToolModal({ isOpen, onClose, tool, onToolClick, lastedTools }: ToolModalProps) {
     if (!tool) return null;
 
+    const [selectedTool, setSelectedTool] = useState<Tool | null>(null);
+    const [lastClickedTools, setLastClickedTools] = useState<Tool[]>([]);
 
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
@@ -34,7 +37,7 @@ export default function ToolModal({ isOpen, onClose, tool, onToolClick, lastedTo
                     </div>
                     <div className="flex flex-col">
                         <h3 className="text-xl font-bold mb-2">{tool.name}</h3>
-
+                        
                         <a
                             href={tool.link}
                             target="_blank"
@@ -57,7 +60,7 @@ export default function ToolModal({ isOpen, onClose, tool, onToolClick, lastedTo
                                 name={tool.name}
                                 icon={tool.icon}
                                 color={tool.color}
-                                onClick={() => onToolClick(tool)} />))}
+                                onClick={() => onToolClick(tool)}                             />))}
                     </div>
                 </div>
             </div>

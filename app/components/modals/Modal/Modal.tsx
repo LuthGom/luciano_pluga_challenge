@@ -1,5 +1,5 @@
 'use client';
-
+import styles from './Modal.module.css';
 import { useRef } from "react";
 
 interface Props {
@@ -21,11 +21,11 @@ export default function Modal({ isOpen, onClose, children }: Props) {
             }}
             aria-modal="true"
         >
-            <div className="bg-white p-6 rounded-lg shadow-xl max-w-2xl w-full mx-4">
-                <div className="flex justify-end">
+            <div className={styles.content}>
+                <div className={styles.closeRow}>
                     <button
                         onClick={onClose}
-                        className="text-gray-500 hover:text-gray-700 text-xl font-bold"
+                        className={styles.closeButton}
                     >
                         X
                     </button>
