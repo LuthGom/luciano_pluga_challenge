@@ -3,18 +3,20 @@
 import { ReactSVG } from "react-svg";
 import Card from "../ui/Card";
 import Modal from "./Modal";
-import Tool from "../../types";
+import Tool from "@/app/types";
+
 
 interface ToolModalProps {
     isOpen: boolean;
     onClose: () => void;
     tool: Tool | null;
     onToolClick: (tool: Tool) => void;
-    recent: Tool[]; // renomeado de lastedTools para recent por consistência
+    lastedTools: Tool[];
 }
 
-export default function ToolModal({ isOpen, onClose, tool, onToolClick, recent }: ToolModalProps) {
+export default function ToolModal({ isOpen, onClose, tool, onToolClick, lastedTools }: ToolModalProps) {
     if (!tool) return null;
+
 
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
@@ -32,7 +34,7 @@ export default function ToolModal({ isOpen, onClose, tool, onToolClick, recent }
                     </div>
                     <div className="flex flex-col">
                         <h3 className="text-xl font-bold mb-2">{tool.name}</h3>
-                        
+
                         <a
                             href={tool.link}
                             target="_blank"
@@ -47,15 +49,15 @@ export default function ToolModal({ isOpen, onClose, tool, onToolClick, recent }
                 <div className="w-full">
                     <h2 className="text-lg font-bold mb-4 text-center">ÚLTIMAS FERRAMENTAS VISUALIZADAS</h2>
                     <div className="flex justify-between">
-                        {recent.map((tool) => (
+
+                        {lastedTools.map((tool) =>
+                        (
                             <Card
                                 key={tool.app_id}
                                 name={tool.name}
                                 icon={tool.icon}
                                 color={tool.color}
-                                onClick={() => onToolClick(tool)}
-                            />
-                        ))}
+                                onClick={() => onToolClick(tool)} />))}
                     </div>
                 </div>
             </div>
