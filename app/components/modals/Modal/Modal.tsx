@@ -14,7 +14,7 @@ export default function Modal({ isOpen, onClose, children }: Props) {
     return (
         <div
             ref={overlayRef}
-            className="fixed inset-0 bg-black/70 flex items-center justify-center"
+            className={styles.overlay}
             onMouseDown={(e) => {
                 // fecha ao clicar fora do conteúdo
                 if (e.target === overlayRef.current) onClose();
